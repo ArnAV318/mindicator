@@ -91,17 +91,28 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Text(
+            Container(
+              
+              child: Text("Select the line",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 40),),
+              constraints: BoxConstraints(
+                maxHeight: 200.0,
+                minHeight: 100.0
+              ),
+              padding: new EdgeInsets.all(40.0),
+            ),
+            /*Text(
               'You have pushed the button this many times:',
             ),
             Text(
               '$_counter',
               style: TextStyle(color: Colors.grey[800],fontWeight: FontWeight.bold,fontSize: 40),
               
-            ),
+            ),*/
+            
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                   GestureDetector(
                     onTap: () {
@@ -156,6 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   ],
+              
                 ),
             
             
