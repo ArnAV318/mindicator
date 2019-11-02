@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'central.dart';
 
 void main() => runApp(MyApp());
 
@@ -118,6 +119,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     onTap: () {
                       //Insert event to be fired up when button is clicked here
                       //in this case, this increments our `countValue` variable by one.
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SecondRoute()),
+                      );
                       _incrementCounter();
                     },
                     child: CircleAvatar(
@@ -179,3 +184,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
