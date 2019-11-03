@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'central.dart';
+import 'westerndir.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget  {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -121,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       //in this case, this increments our `countValue` variable by one.
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SecondRoute()),
+                        MaterialPageRoute(builder: (context) => SecondRoute("Western")),
                       );
                       _incrementCounter();
                     },
@@ -136,6 +136,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     onTap: () {
                       //Insert event to be fired up when button is clicked here
                       //in this case, this increments our `countValue` variable by one.
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SecondRoute("Central")),
+                      );
                       _incrementCounter();
                     },
                     child: CircleAvatar(
@@ -149,6 +153,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     onTap: () {
                       //Insert event to be fired up when button is clicked here
                       //in this case, this increments our `countValue` variable by one.
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SecondRoute("Harbor")),
+                      );
                       _incrementCounter();
                     },
                     child: CircleAvatar(
@@ -162,6 +170,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     onTap: () {
                       //Insert event to be fired up when button is clicked here
                       //in this case, this increments our `countValue` variable by one.
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SecondRoute("Trans-Harbor")),
+                      );
                       _incrementCounter();
                     },
                     child: CircleAvatar(
