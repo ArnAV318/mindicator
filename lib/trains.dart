@@ -2,27 +2,127 @@ import 'package:flutter/material.dart';
 
 class FourthRoute extends StatelessWidget {
 
-  final List<String> entries = <String>[';Churchgate',';Marine Lines',';Charni Road',';Grant Road','Mumbai Central','Mahalaxmi','Lower Parel','Elphinstone Road','Dadar','Matunga Road','Mahim','Bandra','Khar Road','Santacruz','Vile Parle','Andheri','Jogeshwari','Goregaon','Malad','Kandivali','Borivali','Dahisar','Mira Road','Bhayandar','Naigaon','Vasai Road','Nala Sopara','Virar','valtarna','Saphale','Kelve Road','Palghar','Umroli','Boisar','Vangaon','Dahanu Road'];
-
-  @override
+  final List<int> colorCodes = <int>[850, 0];
   String currpos;
-  FourthRoute(pos,line,dir) {
-    currpos=pos;
-    print(line);
-    print(dir);
+  String direction;
+  String line;
+  List<String> stations;
+  List currentTrains;
+  List actualTrains;
+
+  List addMins(time, extraMin){
+    var mins = time[1];
+    var hours = time[0];
+    mins += extraMin;
+    if(mins > 59){
+      mins -= 60;
+      hours += 1;
+    }
+    return [hours, mins];
+  }
+
+  String formattedTrainDisplay(arr){
+    var hrs = arr[0];
+    var mins = arr[1];
+    var sec = '';
+    if (hrs < 11){
+      sec = 'AM';
+    }
+    else if (hrs == 12){
+      sec = 'PM';
+    }
+    else{
+      sec = 'PM';
+      hrs -= 12;
+    }
+
+    hrs = hrs.toString();
+    if (hrs.length == 1){
+      hrs = '0' + hrs;
+    }
+
+    mins = mins.toString();
+    if (mins.length == 1){
+      mins = '0' + mins;
+    }
+
+    return hrs + ':' + mins + ' ' + sec + ' KALYAN SLOW';
+  }
+
+  FourthRoute(stns,pos,liney,dir) {
+
+    List downSlowTrains = [];
+    var hours = 0;
+    var minutes = 10;
+    List time = [hours, minutes];
+    downSlowTrains.add(time);
+    // 25 trains each at interval of 55 mins!
+    for(int i = 0; i < 25; i++){
+      time = addMins(time, 55);
+      downSlowTrains.add(time);
+    }
+
+    List upSlowTrains = [];
+    hours = 0;
+    minutes = 3;
+    time = [hours, minutes];
+    upSlowTrains.add(time);
+    // 25 trains each at interval of 55 mins!
+    for(int i = 0; i < 25; i++){
+      time = addMins(time, 55);
+      upSlowTrains.add(time);
+    }
+
+    currpos = pos;
+    direction = dir;
+    line = liney;
+    print('Moving towards $direction from $currpos on $line line');
+    List instanceTrains = ['under dev!'];
+
+    if(direction == 'Kalyan'){
+      actualTrains = downSlowTrains;
+    }
+
+    else if(direction == 'CSMT'){
+      actualTrains = upSlowTrains;
+    }
+    stations = stns;
+    print(stations);
+    print('Trains from source: $actualTrains');
+    // assiming 2 mins gap bw each station. 
+    instanceTrains = actualTrains.map((train) => addMins(train, 2*(stations.indexOf(pos)))).toList();
+    print('Trains from $pos: $instanceTrains'); 
+
+    currentTrains = instanceTrains;
   }
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text("$currpos"),
+        title: Text("$currpos to $direction"),
       ),
       body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to first route when tapped.
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: currentTrains.length,
+          itemBuilder: (BuildContext context, int index) {
+          return Container(
+
+          height: 50,
+          color: Colors.grey[colorCodes[index%2]],
+          child:  
+          InkWell(
+          // When the user taps the button, show a snackbar.
+          onTap: () {
           },
-          child: Text('$currpos'),
-        ),
+          child: Container(
+          padding: EdgeInsets.all(12.0),
+          child: Text(formattedTrainDisplay(currentTrains[index]),style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+          ),
+          ),
+          );
+          }
+          ),  
       ),
     );
   }

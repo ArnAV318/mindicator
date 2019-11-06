@@ -7,8 +7,8 @@ class SecondRoute extends StatelessWidget {
   SecondRoute(liney) {                           
       line=liney;
       if (line=="Central") {
-        a="CSTM";
-        b="Kasara,Khopoli";
+        a="CSMT";
+        b="Kalyan";
       } else if (line=="Western") {
         a="Churchgate";
         b="Virar";

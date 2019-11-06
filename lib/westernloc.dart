@@ -1,13 +1,28 @@
 import 'package:flutter/material.dart';
 import 'trains.dart';
 class ThirdRoute extends StatelessWidget {
-  final List<String> entries = <String>['Churchgate','Marine Lines','Charni Road','Grant Road','Mumbai Central','Mahalaxmi','Lower Parel','Elphinstone Road','Dadar','Matunga Road','Mahim','Bandra','Khar Road','Santacruz','Vile Parle','Andheri','Jogeshwari','Goregaon','Malad','Kandivali','Borivali','Dahisar','Mira Road','Bhayandar','Naigaon','Vasai Road','Nala Sopara','Virar','valtarna','Saphale','Kelve Road','Palghar','Umroli','Boisar','Vangaon','Dahanu Road'];
-final List<int> colorCodes = <int>[850, 0];
+  List<String> westernStns = <String>['Churchgate','Marine Lines','Charni Road','Grant Road','Mumbai Central','Mahalaxmi','Lower Parel','Elphinstone Road','Dadar','Matunga Road','Mahim','Bandra','Khar Road','Santacruz','Vile Parle','Andheri','Jogeshwari','Goregaon','Malad','Kandivali','Borivali','Dahisar','Mira Road','Bhayandar','Naigaon','Vasai Road','Nala Sopara','Virar','valtarna','Saphale','Kelve Road','Palghar','Umroli','Boisar','Vangaon','Dahanu Road'];
+  List<String> centralStns = <String>['CSMT', 'Masjid', 'Sandhurst Road', 'Byculla', 'Chinchpokli', 'Currey Road', 'Parel', 'Dadar', 'Matunga', 'Sion', 'Kurla', 'Vidyavihar', 'Ghatkopar', 'Vikhroli', 'Kanjurmarg', 'Bandhup', 'Nahur', 'Mulund', 'Thane', 'Kalwa', 'Mumbra', 'Diva', 'Kopar', 'Dombivli', 'Thakurli', 'Kalyan'];
+  List<String> entries = <String>['This page is under development!'];
+  final List<int> colorCodes = <int>[850, 0];
   String line;
   String dir;
   ThirdRoute(liney,diry) {
     line=liney;
     dir=diry;
+    if(line == 'Central'){
+      if(dir == 'CSMT'){
+        entries = centralStns.reversed.toList();
+        entries.removeLast();
+      }
+      else{
+        entries = centralStns;
+        entries.removeLast();
+      }
+    }
+    else if(line == 'Western') {
+      entries = westernStns;
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -52,7 +67,7 @@ final List<int> colorCodes = <int>[850, 0];
                   onTap: () {
                     Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => FourthRoute(entries[index],line,dir)),
+                        MaterialPageRoute(builder: (context) => FourthRoute(entries,entries[index],line,dir)),
                       );
                   },
                   child: Container(
