@@ -7,16 +7,19 @@ class ThirdRoute extends StatelessWidget {
   final List<int> colorCodes = <int>[850, 0];
   String line;
   String dir;
+  var ogStns;
   ThirdRoute(liney,diry) {
     line=liney;
     dir=diry;
     if(line == 'Central'){
       if(dir == 'CSMT'){
         entries = centralStns.reversed.toList();
+        ogStns = entries.toList();
         entries.removeLast();
       }
       else{
         entries = centralStns;
+        ogStns = entries.toList();
         entries.removeLast();
       }
     }
@@ -67,7 +70,7 @@ class ThirdRoute extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => FourthRoute(entries,entries[index],line,dir)),
+                        MaterialPageRoute(builder: (context) => FourthRoute(entries,entries[index],line,dir,ogStns)),
                       );
                   },
                   child: Container(

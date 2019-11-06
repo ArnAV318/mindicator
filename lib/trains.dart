@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'train_tt.dart';
 
 class FourthRoute extends StatelessWidget {
 
@@ -9,6 +10,7 @@ class FourthRoute extends StatelessWidget {
   List<String> stations;
   List currentTrains;
   List actualTrains;
+  var ogStations;
 
   List addMins(time, extraMin){
     var mins = time[1];
@@ -25,7 +27,7 @@ class FourthRoute extends StatelessWidget {
     var hrs = arr[0];
     var mins = arr[1];
     var sec = '';
-    if (hrs < 11){
+    if (hrs <= 11){
       sec = 'AM';
     }
     else if (hrs == 12){
@@ -49,7 +51,7 @@ class FourthRoute extends StatelessWidget {
     return hrs + ':' + mins + ' ' + sec + ' KALYAN SLOW';
   }
 
-  FourthRoute(stns,pos,liney,dir) {
+  FourthRoute(stns,pos,liney,dir,ogStns) {
 
     List downSlowTrains = [];
     var hours = 0;
@@ -76,6 +78,8 @@ class FourthRoute extends StatelessWidget {
     currpos = pos;
     direction = dir;
     line = liney;
+    ogStations = ogStns;
+    print(ogStns);
     print('Moving towards $direction from $currpos on $line line');
     List instanceTrains = ['under dev!'];
 
@@ -99,6 +103,7 @@ class FourthRoute extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Colors.red,
         title: Text("$currpos to $direction"),
       ),
       body: Center(
@@ -114,6 +119,10 @@ class FourthRoute extends StatelessWidget {
           InkWell(
           // When the user taps the button, show a snackbar.
           onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FifthRoute(actualTrains[index], ogStations, currpos)),
+              );
           },
           child: Container(
           padding: EdgeInsets.all(12.0),
