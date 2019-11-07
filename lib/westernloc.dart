@@ -24,7 +24,16 @@ class ThirdRoute extends StatelessWidget {
       }
     }
     else if(line == 'Western') {
-      entries = westernStns;
+      if(dir == 'Churchgate'){
+        entries = westernStns.reversed.toList();
+        ogStns = entries.toList();
+        entries.removeLast();
+      }
+      else{
+        entries = westernStns;
+        ogStns = entries.toList();
+        entries.removeLast();
+      }
     }
   }
   @override

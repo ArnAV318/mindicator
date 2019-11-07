@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'westerndir.dart';
+import 'map.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -186,7 +188,27 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
               
                 ),
-            
+            Container(
+              
+              child: RaisedButton(
+                onPressed: () {
+                  Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => mappy()),
+                      );
+                  print("hi");
+                },
+                child: const Text(
+                  'View Map',
+                  style: TextStyle(fontSize: 20)
+                ),
+              ),
+              constraints: BoxConstraints(
+                maxHeight: 200.0,
+                minHeight: 100.0
+              ),
+              padding: new EdgeInsets.all(40.0),
+            ),
             
             
           ],

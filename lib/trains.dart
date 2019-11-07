@@ -48,11 +48,12 @@ class FourthRoute extends StatelessWidget {
       mins = '0' + mins;
     }
 
-    return hrs + ':' + mins + ' ' + sec + ' KALYAN SLOW';
+    return hrs + ':' + mins + ' ' + sec + ' $direction SLOW';
   }
 
   FourthRoute(stns,pos,liney,dir,ogStns) {
 
+    print(ogStns);
     List downSlowTrains = [];
     var hours = 0;
     var minutes = 10;
@@ -83,13 +84,14 @@ class FourthRoute extends StatelessWidget {
     print('Moving towards $direction from $currpos on $line line');
     List instanceTrains = ['under dev!'];
 
-    if(direction == 'Kalyan'){
+    if(direction == 'Kalyan' || direction == 'Virar'){
       actualTrains = downSlowTrains;
     }
 
-    else if(direction == 'CSMT'){
+    else if(direction == 'CSMT' || direction == 'Churchgate'){
       actualTrains = upSlowTrains;
     }
+
     stations = stns;
     print(stations);
     print('Trains from source: $actualTrains');
